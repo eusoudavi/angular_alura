@@ -18,13 +18,16 @@ export class TransferenciaService {
     return this.listaTansferencia;
   }
 
-  todas(): Observable<Transferencia[]>{
+  // MÉTODO GET - LISTAR TODAS AS TRANSFERENCIAS
+  todas(): Observable<Transferencia[]> {
     return this.httpClient.get<Transferencia[]>(this.url);
-  } // MÉTODO GET - LISTAR TODAS AS TRANSFERENCIAS
+  }
 
-  adicionar(transferencia: any) {
+  // MÉTODO POST - LISTAR TODAS AS TRANSFERENCIAS
+  adicionar(transferencia: Transferencia): Observable<Transferencia> {
     this.hidratar(transferencia);
-    this.listaTansferencia.push(transferencia);
+    //this.listaTansferencia.push(transferencia);
+     return this.httpClient.post<Transferencia>(this.url,transferencia);
   }
 
   private hidratar(transferencia: any) {
