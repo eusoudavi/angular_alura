@@ -1,19 +1,26 @@
+import { Transferencia } from './../models/transferencia.model';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TransferenciaService {
-
   private listaTansferencia: any[];
+  private url = 'http://localhost:3000/transferencias';
 
-  constructor() {
+  constructor(private httpClient: HttpClient) {
     this.listaTansferencia = [];
   }
 
   get listaTransferencia() {
     return this.listaTansferencia;
   }
+
+  todas(): Observable<Transferencia[]>{
+    return this.httpClient.get<Transferencia[]>(this.url);
+  } // MÉTODO GET - LISTAR TODAS AS TRANSFERENCIAS
 
   adicionar(transferencia: any) {
     this.hidratar(transferencia);
