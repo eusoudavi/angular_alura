@@ -1,3 +1,4 @@
+import { TransferenciaService } from './../services/transferencia.service';
 import { Component, Input } from '@angular/core';
 
 @Component({
@@ -8,5 +9,12 @@ import { Component, Input } from '@angular/core';
 export class ExtratoComponent {
 
   @Input() transferencias: any[] = [];
+
+  constructor(private service: TransferenciaService){
+  }
+
+  ngOnInit(){
+    this.transferencias = this.service.listaTransferencia;
+  }
 
 }
